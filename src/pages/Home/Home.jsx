@@ -1,11 +1,13 @@
 import Navbar from '../../layout/Navbar/Navbar';
 import Footer from '../../layout/Footer/Footer';
-
+import hero from '../../assets/hero.png';
 import './Home.css';
 
 function Home() {
   return (
     <main className='container py-5'>
+      <img src={hero} alt='Hero' />
+
       <h1>YEN Journey</h1>
 
       <p>Explore the World.</p>
@@ -13,10 +15,15 @@ function Home() {
 
       <h2>
         A Journey of
+        <br />
         Learning, Travel & Life
       </h2>
 
-      <p>一位住在歐洲的台灣媽媽， 分享旅行、前端開發、AI與育兒生活。</p>
+      <p>
+        一位住在歐洲的台灣媽媽，
+        <br />
+        分享旅行、前端開發、AI與育兒生活。
+      </p>
 
       <button className='btn btn-dark'>Begin Your Journey</button>
     </main>
