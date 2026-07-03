@@ -1,23 +1,28 @@
-# Yen's Journey
+# 🌿 Yen's Journey
 
-> Explore the World. Learn Every Day.
+> Explore the World.<br>
+> Learn Every Day.
 
 A personal website sharing:
 
 - 🌍 Travel
 - 💻 Frontend Development
-- 🤖 AI Tools
+- 🤖 AI
 - 👶 Parenting
 - ✈️ Flight Search
 
-## Tech Stack
+---
+
+## 🛠 Tech Stack
 
 - React
 - Vite
 - Bootstrap
-- Python (Future)
-- Travelpayouts API (Future)
+- Python (Coming Soon)
+- Travelpayouts API (Coming Soon)
 
-## Status
+---
 
-🚧 In Development
+## 🚧 Status
+
+Currently under development.
