@@ -1,0 +1,31 @@
+.flight-search-page {
+  min-height: calc(100vh - 80px);
+  padding: 6rem 1.5rem;
+  background: #f8fafc;
+}
+
+.flight-search-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.flight-search-container .eyebrow {
+  color: #2563eb;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flight-search-container h1 {
+  margin: 0.5rem 0 1rem;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.05;
+  color: #0f172a;
+}
+
+.flight-search-container p {
+  max-width: 680px;
+  color: #475569;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
