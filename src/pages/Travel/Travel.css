@@ -1,0 +1,302 @@
+.travel-page {
+  background: #f8fafc;
+}
+
+/* ===============================
+   Travel Hero
+================================ */
+
+.travel-hero {
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+
+  padding: 9rem 1.5rem 5rem;
+
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.94),
+    rgba(30, 41, 59, 0.82)
+  );
+}
+
+.travel-hero-container {
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+
+  color: white;
+}
+
+.travel-eyebrow {
+  margin: 0 0 0.85rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: inherit;
+  opacity: 0.78;
+}
+
+.travel-hero h1 {
+  max-width: 880px;
+  margin: 0 0 1.3rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(3rem, 7vw, 6.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.08em;
+
+  color: white;
+}
+
+.travel-hero p:not(.travel-eyebrow) {
+  max-width: 620px;
+  margin: 0;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 1.12rem;
+  line-height: 1.8;
+
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* ===============================
+   Shared Sections
+================================ */
+
+.travel-content-section,
+.popular-routes-section {
+  padding: 6rem 1.5rem;
+}
+
+.travel-content-section {
+  background: #f8fafc;
+}
+
+.featured-section {
+  background: #ffffff;
+}
+
+.popular-routes-section {
+  background: #f8fafc;
+}
+
+.travel-section-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.travel-section-heading {
+  margin-bottom: 2.25rem;
+}
+
+.travel-section-heading .travel-eyebrow {
+  color: #64748b;
+}
+
+.travel-section-heading h2 {
+  max-width: 820px;
+  margin: 0;
+
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.07em;
+
+  color: #0f172a;
+}
+
+/* ===============================
+   Article Cards
+================================ */
+
+.travel-article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.travel-article-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+
+  padding: 1.5rem;
+
+  color: inherit;
+  text-decoration: none;
+
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 28px;
+
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.featured-section .travel-article-card {
+  background: #f8fafc;
+}
+
+.travel-article-card:hover {
+  transform: translateY(-6px);
+  border-color: #cbd5e1;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
+}
+
+.travel-article-card span {
+  margin-bottom: 1rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: #2563eb;
+}
+
+.travel-article-card h3 {
+  margin: 0 0 1rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 1.45rem;
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+
+  color: #0f172a;
+}
+
+.travel-article-card p {
+  margin: 0;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.7;
+
+  color: #64748b;
+}
+
+/* ===============================
+   Popular Routes
+================================ */
+
+.popular-route-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.popular-route-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  padding: 1.5rem;
+
+  text-decoration: none;
+
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 28px;
+
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+}
+
+.popular-route-card:hover {
+  transform: translateY(-5px);
+  background: white;
+  border-color: #bfdbfe;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.09);
+}
+
+.popular-route-card span {
+  display: inline-flex;
+  margin-bottom: 0.85rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: #2563eb;
+}
+
+.popular-route-card h3 {
+  margin: 0 0 0.65rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+
+  color: #0f172a;
+}
+
+.popular-route-card p {
+  max-width: 420px;
+  margin: 0;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+
+  color: #64748b;
+}
+
+.popular-route-card strong {
+  flex-shrink: 0;
+  align-self: flex-end;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+
+  color: #2563eb;
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 900px) {
+  .travel-article-grid,
+  .popular-route-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .popular-route-card {
+    flex-direction: column;
+  }
+
+  .popular-route-card strong {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .travel-hero {
+    min-height: 68vh;
+    padding: 9rem 1rem 4rem;
+  }
+
+  .travel-content-section,
+  .popular-routes-section {
+    padding: 4.5rem 1rem;
+  }
+
+  .travel-article-card,
+  .popular-route-card {
+    border-radius: 22px;
+  }
+}
