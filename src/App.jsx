@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 
 import Home from './pages/Home/Home';
 import Travel from './pages/Travel/Travel';
+import TravelArticle from './pages/TravelArticle/TravelArticle';
 import AI from './pages/AI/AI';
 import Frontend from './pages/Frontend/Frontend';
 import Parenting from './pages/Parenting/Parenting';
@@ -21,14 +22,18 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element={<Home />} />
+
           <Route path='/travel' element={<Travel />} />
+          <Route path='/travel/:slug' element={<TravelArticle />} />
+
           <Route path='/ai' element={<AI />} />
           <Route path='/frontend' element={<Frontend />} />
           <Route path='/parenting' element={<Parenting />} />
-          {/* <Route path='/about' element={<About />} /> */}
+          {/* <Route path="/about" element={<About />} /> */}
           <Route path='/affiliate' element={<Affiliate />} />
         </Routes>
       </main>
+
       <Footer />
     </BrowserRouter>
   );

@@ -1,54 +1,13 @@
+import { Link } from 'react-router-dom';
+
 import FlightSearchCTA from '../../components/FlightSearchCTA/FlightSearchCTA';
+import {
+  getFeaturedTravelArticles,
+  getLatestTravelArticles,
+} from '../../data/travelArticles';
 import { buildPopularRouteUrl } from '../../utils/buildAviasalesUrl';
+
 import './Travel.css';
-
-const latestArticles = [
-  {
-    title: 'Taiwan to Japan: A simple guide for your first family trip',
-    category: 'Japan',
-    excerpt:
-      'A practical starting point for planning flights, cities, and family-friendly travel days between Taiwan and Japan.',
-    href: '#',
-  },
-  {
-    title: 'Budapest with kids: slow travel notes from everyday life',
-    category: 'Europe',
-    excerpt:
-      'Thoughts on parks, public transport, simple meals, and small routines that make city travel easier with children.',
-    href: '#',
-  },
-  {
-    title: 'A slow travel weekend in Vienna',
-    category: 'Europe',
-    excerpt:
-      'Simple ideas for a relaxed Vienna weekend with museums, cafés, parks, and easy public transport.',
-    href: '#',
-  },
-];
-
-const featuredArticles = [
-  {
-    title: 'How I compare flight routes between Taiwan and Europe',
-    category: 'Flight Tips',
-    excerpt:
-      'A personal workflow for checking routes, dates, layovers, and realistic travel budgets before booking.',
-    href: '#',
-  },
-  {
-    title: 'How to plan a family-friendly Japan itinerary',
-    category: 'Family Travel',
-    excerpt:
-      'A simple way to balance cities, rest days, food stops, and kid-friendly activities in Japan.',
-    href: '#',
-  },
-  {
-    title: 'Taiwan to Europe travel checklist',
-    category: 'Planning',
-    excerpt:
-      'A practical checklist for long-haul flights, layovers, documents, packing, and arrival days.',
-    href: '#',
-  },
-];
 
 const popularRoutes = [
   {
@@ -97,20 +56,23 @@ const popularRoutes = [
 
 function ArticleCard({ article }) {
   return (
-    <a href={article.href} className="travel-article-card">
+    <Link to={`/travel/${article.slug}`} className='travel-article-card'>
       <span>{article.category}</span>
       <h3>{article.title}</h3>
       <p>{article.excerpt}</p>
-    </a>
+    </Link>
   );
 }
 
 function Travel() {
+  const latestArticles = getLatestTravelArticles();
+  const featuredArticles = getFeaturedTravelArticles();
+
   return (
-    <div className="travel-page">
-      <section className="travel-hero">
-        <div className="travel-hero-container">
-          <p className="travel-eyebrow">Travel</p>
+    <div className='travel-page'>
+      <section className='travel-hero'>
+        <div className='travel-hero-container'>
+          <p className='travel-eyebrow'>Travel</p>
 
           <h1>Travel stories, guides, and flight ideas</h1>
 
@@ -121,54 +83,54 @@ function Travel() {
         </div>
       </section>
 
-      <section className="travel-content-section">
-        <div className="travel-section-container">
-          <div className="travel-section-heading">
-            <p className="travel-eyebrow">Latest Articles</p>
+      <section className='travel-content-section'>
+        <div className='travel-section-container'>
+          <div className='travel-section-heading'>
+            <p className='travel-eyebrow'>Latest Articles</p>
             <h2>Latest travel notes</h2>
           </div>
 
-          <div className="travel-article-grid">
+          <div className='travel-article-grid'>
             {latestArticles.map((article) => (
-              <ArticleCard article={article} key={article.title} />
+              <ArticleCard article={article} key={article.slug} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="travel-content-section featured-section">
-        <div className="travel-section-container">
-          <div className="travel-section-heading">
-            <p className="travel-eyebrow">Featured Guides</p>
+      <section className='travel-content-section featured-section'>
+        <div className='travel-section-container'>
+          <div className='travel-section-heading'>
+            <p className='travel-eyebrow'>Featured Guides</p>
             <h2>Useful guides for planning better trips</h2>
           </div>
 
-          <div className="travel-article-grid">
+          <div className='travel-article-grid'>
             {featuredArticles.map((article) => (
-              <ArticleCard article={article} key={article.title} />
+              <ArticleCard article={article} key={article.slug} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="popular-routes-section">
-        <div className="travel-section-container">
-          <div className="travel-section-heading">
-            <p className="travel-eyebrow">Popular Routes</p>
+      <section className='popular-routes-section'>
+        <div className='travel-section-container'>
+          <div className='travel-section-heading'>
+            <p className='travel-eyebrow'>Popular Routes</p>
             <h2>Start with these flight routes</h2>
           </div>
 
-          <div className="popular-route-grid">
+          <div className='popular-route-grid'>
             {popularRoutes.map((route) => (
               <a
                 key={route.label}
-                className="popular-route-card"
+                className='popular-route-card'
                 href={buildPopularRouteUrl({
                   origin: route.origin,
                   destination: route.destination,
                 })}
-                target="_blank"
-                rel="noopener noreferrer"
+                target='_blank'
+                rel='noopener noreferrer'
               >
                 <div>
                   <span>
