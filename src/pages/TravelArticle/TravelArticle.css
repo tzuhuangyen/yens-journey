@@ -83,6 +83,27 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
 }
+.travel-article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.travel-article-tags span {
+  display: inline-flex;
+  padding: 0.42rem 0.7rem;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  color: #bfdbfe;
+  background: rgba(191, 219, 254, 0.1);
+  border: 1px solid rgba(191, 219, 254, 0.18);
+  border-radius: 999px;
+}
 
 .travel-article-hero p:not(.travel-article-eyebrow) {
   max-width: 720px;
@@ -313,6 +334,9 @@
 @media (max-width: 640px) {
   .travel-article-hero {
     padding: 9rem 1rem 4.5rem;
+    .article-routes-section {
+      padding: 0 1rem 4.5rem;
+    }
   }
 
   .travel-article-layout {
@@ -332,4 +356,36 @@
   .related-travel-section {
     padding: 0 1rem 4.5rem;
   }
+}
+/* ==========================================================================
+   Related Routes Section (新增的航線區塊樣式)
+   ========================================================================== */
+.article-routes-section {
+  padding: 1rem 1.5rem 6rem;
+
+  background: #f8fafc;
+}
+
+.article-routes-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.article-routes-heading {
+  margin-bottom: 2rem;
+}
+
+.article-routes-heading .travel-article-eyebrow {
+  color: #2563eb;
+}
+
+.article-routes-heading h2 {
+  margin: 0;
+
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.07em;
+
+  color: #0f172a;
 }

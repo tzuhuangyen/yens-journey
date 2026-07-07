@@ -7,6 +7,9 @@ export const travelArticles = [
     date: '2026-07-06',
     excerpt:
       'A practical starting point for planning flights, cities, and family-friendly travel days between Taiwan and Japan.',
+    readingTime: '4 min read',
+    tags: ['Japan', 'Family Travel', 'Taiwan'],
+    relatedRouteIds: ['taipei-tokyo', 'taipei-osaka'],
     heroLabel: 'Family Travel',
     content: [
       {
@@ -47,6 +50,9 @@ export const travelArticles = [
     date: '2026-07-05',
     excerpt:
       'Thoughts on parks, public transport, simple meals, and small routines that make city travel easier with children.',
+    readingTime: '3 min read',
+    tags: ['Budapest', 'Europe', 'Family Travel'],
+    relatedRouteIds: ['budapest-taipei', 'vienna-taipei'],
     heroLabel: 'Europe',
     content: [
       {
@@ -87,6 +93,9 @@ export const travelArticles = [
     date: '2026-07-04',
     excerpt:
       'Simple ideas for a relaxed Vienna weekend with museums, cafés, parks, and easy public transport.',
+    readingTime: '3 min read',
+    tags: ['Vienna', 'Europe', 'Slow Travel'],
+    relatedRouteIds: ['vienna-taipei', 'budapest-taipei'],
     heroLabel: 'Slow Travel',
     content: [
       {
@@ -127,6 +136,9 @@ export const travelArticles = [
     date: '2026-07-03',
     excerpt:
       'A personal workflow for checking routes, dates, layovers, and realistic travel budgets before booking.',
+    readingTime: '4 min read',
+    tags: ['Flight Tips', 'Taiwan', 'Europe'],
+    relatedRouteIds: ['budapest-taipei', 'vienna-taipei'],
     heroLabel: 'Flight Planning',
     content: [
       {
@@ -167,6 +179,9 @@ export const travelArticles = [
     date: '2026-07-02',
     excerpt:
       'A simple way to balance cities, rest days, food stops, and kid-friendly activities in Japan.',
+    readingTime: '4 min read',
+    tags: ['Japan', 'Family Travel', 'Itinerary'],
+    relatedRouteIds: ['taipei-tokyo', 'taipei-osaka'],
     heroLabel: 'Japan',
     content: [
       {
@@ -207,6 +222,9 @@ export const travelArticles = [
     date: '2026-07-01',
     excerpt:
       'A practical checklist for long-haul flights, layovers, documents, packing, and arrival days.',
+    readingTime: '3 min read',
+    tags: ['Planning', 'Taiwan', 'Europe'],
+    relatedRouteIds: ['budapest-taipei', 'vienna-taipei'],
     heroLabel: 'Checklist',
     content: [
       {

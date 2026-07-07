@@ -1,0 +1,46 @@
+/* ==========================================
+   Featured Categories
+   YEN Journey
+========================================== */
+
+.featured {
+  background: #f8f6f2;
+
+  padding: 120px 80px;
+}
+
+.featured-grid {
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 40px;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 992px) {
+  .featured {
+    padding: 80px 40px;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 576px) {
+  .featured {
+    padding: 60px 24px;
+  }
+}

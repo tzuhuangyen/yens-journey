@@ -1,10 +1,12 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 
 import FlightSearchCTA from '../../components/FlightSearchCTA/FlightSearchCTA';
+import PopularRouteCards from '../../components/PopularRouteCards/PopularRouteCards';
 import {
   getFeaturedTravelArticles,
   getTravelArticleBySlug,
 } from '../../data/travelArticles';
+import { getPopularRoutesByIds } from '../../data/popularRoutes';
 
 import './TravelArticle.css';
 
@@ -31,6 +33,8 @@ function TravelArticle() {
     .filter((item) => item.slug !== article.slug)
     .slice(0, 3);
 
+  const relatedRoutes = getPopularRoutesByIds(article.relatedRouteIds);
+
   return (
     <article className='travel-article-page'>
       <header className='travel-article-hero'>
@@ -46,7 +50,16 @@ function TravelArticle() {
           <div className='travel-article-meta'>
             <span>{article.category}</span>
             <span>{formatDisplayDate(article.date)}</span>
+            <span>{article.readingTime}</span>
           </div>
+
+          {article.tags && article.tags.length > 0 && (
+            <div className='travel-article-tags' aria-label='Article tags'>
+              {article.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          )}
 
           <p>{article.excerpt}</p>
         </div>
@@ -74,10 +87,23 @@ function TravelArticle() {
               nearby airports before you decide.
             </p>
 
-            <a href='#flight-search'>Search flights</a>
+            <a href='#related-routes'>View related routes</a>
           </div>
         </aside>
       </div>
+
+      {relatedRoutes.length > 0 && (
+        <section className='article-routes-section' id='related-routes'>
+          <div className='article-routes-container'>
+            <div className='article-routes-heading'>
+              <p className='travel-article-eyebrow'>Related Routes</p>
+              <h2>Flight routes for this guide</h2>
+            </div>
+
+            <PopularRouteCards routes={relatedRoutes} />
+          </div>
+        </section>
+      )}
 
       {relatedArticles.length > 0 && (
         <section className='related-travel-section'>

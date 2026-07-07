@@ -5,54 +5,10 @@ import {
   getFeaturedTravelArticles,
   getLatestTravelArticles,
 } from '../../data/travelArticles';
-import { buildPopularRouteUrl } from '../../utils/buildAviasalesUrl';
+import PopularRouteCards from '../../components/PopularRouteCards/PopularRouteCards';
+import { popularRoutes } from '../../data/popularRoutes';
 
 import './Travel.css';
-
-const popularRoutes = [
-  {
-    label: 'Taipei to Tokyo',
-    origin: 'TPE',
-    destination: 'NRT',
-    description:
-      'A classic Taiwan to Japan route for city trips, cherry blossoms, and family travel.',
-  },
-  {
-    label: 'Taipei to Osaka',
-    origin: 'TPE',
-    destination: 'KIX',
-    description:
-      'Great for Kansai trips, Kyoto, Nara, Universal Studios, and food-focused travel.',
-  },
-  {
-    label: 'Taipei to Seoul',
-    origin: 'TPE',
-    destination: 'ICN',
-    description:
-      'A short and flexible route for culture, food, shopping, and weekend trips.',
-  },
-  {
-    label: 'Taipei to Bangkok',
-    origin: 'TPE',
-    destination: 'BKK',
-    description:
-      'A warm-weather route for food, hotels, family trips, and easy city breaks.',
-  },
-  {
-    label: 'Budapest to Taipei',
-    origin: 'BUD',
-    destination: 'TPE',
-    description:
-      'Useful for planning long-haul trips between Central Europe and Taiwan.',
-  },
-  {
-    label: 'Vienna to Taipei',
-    origin: 'VIE',
-    destination: 'TPE',
-    description:
-      'A practical route option for travelers based in Austria, Hungary, or nearby countries.',
-  },
-];
 
 function ArticleCard({ article }) {
   return (
@@ -120,32 +76,7 @@ function Travel() {
             <h2>Start with these flight routes</h2>
           </div>
 
-          <div className='popular-route-grid'>
-            {popularRoutes.map((route) => (
-              <a
-                key={route.label}
-                className='popular-route-card'
-                href={buildPopularRouteUrl({
-                  origin: route.origin,
-                  destination: route.destination,
-                })}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <div>
-                  <span>
-                    {route.origin} → {route.destination}
-                  </span>
-
-                  <h3>{route.label}</h3>
-
-                  <p>{route.description}</p>
-                </div>
-
-                <strong>Search route</strong>
-              </a>
-            ))}
-          </div>
+          <PopularRouteCards routes={popularRoutes} />
         </div>
       </section>
 
