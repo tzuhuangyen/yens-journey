@@ -1,4 +1,4 @@
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../layout/Navbar/Navbar';
 import hero from '../../assets/hero.png';
 import './Hero.css';
 

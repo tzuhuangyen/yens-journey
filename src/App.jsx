@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './layout/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 
 import Home from './pages/Home/Home';
 import Travel from './pages/Travel/Travel';
 import TravelArticle from './pages/TravelArticle/TravelArticle';
-import AI from './pages/AI/AI';
-import Frontend from './pages/Frontend/Frontend';
+import Tech from './pages/Tech/Tech';
+import TechDetail from './pages/Tech/TechDetail';
 import Parenting from './pages/Parenting/Parenting';
 // import About from './pages/About/About';
 import Affiliate from './pages/Affiliate/Affiliate';
@@ -22,13 +22,11 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element={<Home />} />
-
           <Route path='/travel' element={<Travel />} />
           <Route path='/travel/:slug' element={<TravelArticle />} />
-
-          <Route path='/ai' element={<AI />} />
-          <Route path='/frontend' element={<Frontend />} />
-          <Route path='/parenting' element={<Parenting />} />
+          <Route path='/tech' element={<Tech />} />
+          <Route path='/tech/:slug' element={<TechDetail />} />
+          Navbar.jsx <Route path='/parenting' element={<Parenting />} />
           {/* <Route path="/about" element={<About />} /> */}
           <Route path='/affiliate' element={<Affiliate />} />
         </Routes>
