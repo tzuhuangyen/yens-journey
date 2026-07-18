@@ -1,10 +1,12 @@
+/* ===============================
+   Flight CTA Section
+================================ */
 .flight-cta-section {
   padding: 6rem 1.5rem;
-
   background: linear-gradient(
     135deg,
-    rgba(15, 23, 42, 0.96),
-    rgba(30, 41, 59, 0.9)
+    rgba(30, 43, 33, 0.97),
+    rgba(55, 71, 59, 0.92)
   );
 }
 
@@ -13,90 +15,85 @@
   grid-template-columns: 0.9fr 1.1fr;
   gap: 4rem;
   align-items: center;
-
   max-width: 1180px;
   margin: 0 auto;
 }
 
 .flight-cta-content {
-  color: white;
+  color: #faf8f5;
 }
 
 .flight-cta-eyebrow {
   margin: 0 0 0.75rem;
-
   font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-
-  color: #bfdbfe;
+  color: #faf8f5;
+  opacity: 0.6;
 }
 
 .flight-cta-content h2 {
   margin: 0 0 1.2rem;
-
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(2.4rem, 5vw, 4.8rem);
-  line-height: 0.95;
-  letter-spacing: -0.07em;
-
-  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #faf8f5;
 }
 
 .flight-cta-content p {
   max-width: 520px;
   margin: 0;
-
   font-family: 'Inter', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.8;
-
-  color: rgba(255, 255, 255, 0.76);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(250, 248, 245, 0.72);
 }
 
+/* ===============================
+   Search Form Card
+================================ */
 .flight-search-form {
   padding: 2rem;
-
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 28px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  background: #faf8f5;
+  border: 1px solid #ebe2d6;
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
 }
 
+/* Trip Type Toggle */
 .trip-type-toggle {
   display: inline-flex;
   gap: 0.4rem;
-
   margin-bottom: 1.5rem;
   padding: 0.3rem;
-
-  background: #f1f5f9;
+  background: #ebe2d6;
   border-radius: 999px;
 }
 
 .trip-type-toggle button {
   border: 0;
-  padding: 0.7rem 1rem;
-
+  padding: 0.65rem 1rem;
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-
-  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #6b7c6e;
   background: transparent;
   border-radius: 999px;
-
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .trip-type-toggle button.active {
-  color: #0f172a;
-  background: white;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  color: #1e2b21;
+  background: #faf8f5;
+  box-shadow: 0 4px 16px rgba(55, 71, 59, 0.14);
 }
 
+/* Form Grid */
 .flight-form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -111,36 +108,35 @@
 
 .flight-form-grid span {
   font-family: 'Inter', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-
-  color: #64748b;
+  color: #6b7c6e;
 }
 
 .flight-form-grid input {
   width: 100%;
   min-height: 52px;
   padding: 0 1rem;
-
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-
-  color: #0f172a;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
+  color: #1e2b21;
+  background: #ffffff;
+  border: 1px solid #ebe2d6;
+  border-radius: 14px;
   outline: none;
-
   box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .flight-form-grid input:focus {
   background: white;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  border-color: #37473b;
+  box-shadow: 0 0 0 4px rgba(55, 71, 59, 0.1);
 }
 
 .disabled-field {
@@ -149,30 +145,25 @@
 
 .flight-form-error {
   margin: 1rem 0 0;
-
   font-family: 'Inter', sans-serif;
   font-size: 0.92rem;
-  font-weight: 700;
-
-  color: #dc2626;
+  font-weight: 600;
+  color: #b45309;
 }
 
+/* Search Button：森林綠 */
 .flight-search-button {
   width: 100%;
   min-height: 56px;
   margin-top: 1.5rem;
-
   border: 0;
   border-radius: 999px;
-
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.02em;
-
-  color: white;
-  background: #2563eb;
-
+  color: #faf8f5;
+  background: #37473b;
   cursor: pointer;
   transition:
     transform 0.25s ease,
@@ -181,21 +172,22 @@
 }
 
 .flight-search-button:hover {
-  background: #1d4ed8;
+  background: #1e2b21;
   transform: translateY(-2px);
-  box-shadow: 0 18px 36px rgba(37, 99, 235, 0.28);
+  box-shadow: 0 18px 36px rgba(55, 71, 59, 0.3);
 }
 
 .flight-form-note {
   margin: 1rem 0 0;
-
   font-family: 'Inter', sans-serif;
   font-size: 0.82rem;
-  line-height: 1.6;
-
-  color: #64748b;
+  line-height: 1.65;
+  color: #6b7c6e;
 }
 
+/* ===============================
+   Responsive
+================================ */
 @media (max-width: 900px) {
   .flight-cta-container {
     grid-template-columns: 1fr;
@@ -218,7 +210,7 @@
 
   .flight-search-form {
     padding: 1.25rem;
-    border-radius: 22px;
+    border-radius: 20px;
   }
 
   .flight-form-grid {

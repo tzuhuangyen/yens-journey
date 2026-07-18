@@ -1,88 +1,103 @@
+/* ===============================
+   Google Fonts Import
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ===============================
+   Page Base
+================================ */
 .travel-page {
-  background: #f8fafc;
+  background: #faf8f5;
 }
 
 /* ===============================
    Travel Hero
 ================================ */
-
 .travel-hero {
   min-height: 72vh;
   display: flex;
   align-items: center;
-
   padding: 9rem 1.5rem 5rem;
-
   background: linear-gradient(
     135deg,
-    rgba(15, 23, 42, 0.94),
-    rgba(30, 41, 59, 0.82)
+    rgba(55, 71, 59, 0.97),
+    rgba(55, 71, 59, 0.82)
   );
+  position: relative;
+  overflow: hidden;
+}
+
+/* 細緻的紋理感背景 */
+.travel-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 70% 40%,
+    rgba(250, 248, 245, 0.06) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
 }
 
 .travel-hero-container {
   max-width: 1180px;
   width: 100%;
   margin: 0 auto;
-
-  color: white;
+  color: #faf8f5;
+  position: relative;
+  z-index: 1;
 }
 
 .travel-eyebrow {
   margin: 0 0 0.85rem;
-
   font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-
   color: inherit;
-  opacity: 0.78;
+  opacity: 0.65;
 }
 
 .travel-hero h1 {
-  max-width: 880px;
-  margin: 0 0 1.3rem;
-
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(3rem, 7vw, 6.8rem);
-  line-height: 0.92;
-  letter-spacing: -0.08em;
-
-  color: white;
+  max-width: 820px;
+  margin: 0 0 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #faf8f5;
 }
 
 .travel-hero p:not(.travel-eyebrow) {
-  max-width: 620px;
+  max-width: 580px;
   margin: 0;
-
   font-family: 'Inter', sans-serif;
-  font-size: 1.12rem;
-  line-height: 1.8;
-
-  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: rgba(250, 248, 245, 0.78);
 }
 
 /* ===============================
    Shared Sections
 ================================ */
-
 .travel-content-section,
 .popular-routes-section {
   padding: 6rem 1.5rem;
 }
 
 .travel-content-section {
-  background: #f8fafc;
+  background: #faf8f5;
 }
 
 .featured-section {
-  background: #ffffff;
+  background: #f0ece5;
 }
 
 .popular-routes-section {
-  background: #f8fafc;
+  background: #faf8f5;
 }
 
 .travel-section-container {
@@ -91,29 +106,28 @@
 }
 
 .travel-section-heading {
-  margin-bottom: 2.25rem;
+  margin-bottom: 2.5rem;
 }
 
 .travel-section-heading .travel-eyebrow {
-  color: #64748b;
+  color: #37473b;
+  opacity: 0.7;
 }
 
 .travel-section-heading h2 {
   max-width: 820px;
   margin: 0;
-
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 4.8rem);
-  line-height: 0.98;
-  letter-spacing: -0.07em;
-
-  color: #0f172a;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #1e2b21;
 }
 
 /* ===============================
    Article Cards
 ================================ */
-
 .travel-article-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -123,17 +137,13 @@
 .travel-article-card {
   display: flex;
   flex-direction: column;
-  min-height: 280px;
-
-  padding: 1.5rem;
-
+  min-height: 260px;
+  padding: 1.75rem;
   color: inherit;
   text-decoration: none;
-
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 28px;
-
+  background: #ffffff;
+  border: 1px solid #ebe2d6;
+  border-radius: 20px;
   transition:
     transform 0.28s ease,
     box-shadow 0.28s ease,
@@ -141,52 +151,49 @@
 }
 
 .featured-section .travel-article-card {
-  background: #f8fafc;
+  background: #faf8f5;
 }
 
 .travel-article-card:hover {
-  transform: translateY(-6px);
-  border-color: #cbd5e1;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
+  transform: translateY(-5px);
+  border-color: #c8b89a;
+  box-shadow: 0 20px 50px rgba(55, 71, 59, 0.1);
 }
 
+/* 分類標籤：森林綠 */
 .travel-article-card span {
-  margin-bottom: 1rem;
-
+  margin-bottom: 0.85rem;
   font-family: 'Inter', sans-serif;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-
-  color: #2563eb;
+  color: #37473b;
 }
 
+/* 文章標題：Cormorant Garamond */
 .travel-article-card h3 {
-  margin: 0 0 1rem;
-
-  font-family: 'Inter', sans-serif;
-  font-size: 1.45rem;
-  line-height: 1.16;
-  letter-spacing: -0.04em;
-
-  color: #0f172a;
+  margin: 0 0 0.85rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #1e2b21;
 }
 
+/* 摘要：Inter 細字 */
 .travel-article-card p {
   margin: 0;
-
   font-family: 'Inter', sans-serif;
-  font-size: 0.98rem;
-  line-height: 1.7;
-
-  color: #64748b;
+  font-size: 0.93rem;
+  line-height: 1.75;
+  color: #6b7c6e;
 }
 
 /* ===============================
    Responsive
 ================================ */
-
 @media (max-width: 900px) {
   .travel-article-grid,
   .popular-route-grid {
@@ -215,6 +222,6 @@
 
   .travel-article-card,
   .popular-route-card {
-    border-radius: 22px;
+    border-radius: 16px;
   }
 }
