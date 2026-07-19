@@ -1,0 +1,121 @@
+.about-preview {
+  background: #37473b;
+  padding: 6rem 1.5rem;
+}
+
+.ap-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Left */
+.ap-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.5);
+  margin: 0 0 1rem;
+}
+
+.ap-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 500;
+  color: #faf8f5;
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.ap-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: rgba(250, 248, 245, 0.72);
+  margin: 0 0 2rem;
+}
+
+.ap-button {
+  display: inline-flex;
+  padding: 14px 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #37473b;
+  background: #faf8f5;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.ap-button:hover {
+  background: #ebe2d6;
+  transform: translateY(-2px);
+}
+
+/* Right - Values */
+.ap-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.ap-value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(250, 248, 245, 0.07);
+  border: 1px solid rgba(250, 248, 245, 0.1);
+  border-radius: 18px;
+}
+
+.ap-value-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.ap-value-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #faf8f5;
+  margin: 0 0 0.2rem;
+}
+
+.ap-value-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(250, 248, 245, 0.55);
+  margin: 0;
+}
+
+/* RWD */
+@media (max-width: 900px) {
+  .ap-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-preview {
+    padding: 4rem 1.25rem;
+  }
+
+  .ap-values {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .ap-value-item {
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+}

@@ -27,6 +27,7 @@ function App() {
           <Route path='/tech' element={<Tech />} />
           <Route path='/tech/:slug' element={<TechDetail />} />
           Navbar.jsx <Route path='/parenting' element={<Parenting />} />
+          <Route path='/parenting' element={<Parenting />} />
           <Route path='/about' element={<About />} />
           <Route path='/affiliate' element={<Affiliate />} />
         </Routes>

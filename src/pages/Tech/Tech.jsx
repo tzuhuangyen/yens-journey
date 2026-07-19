@@ -1,171 +1,118 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllTechNotes } from '../../data/techNotes';
-import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import './Tech.css';
+
+const techArticles = [
+  {
+    id: 1,
+    category: 'AI Tools',
+    title: 'How I Use ChatGPT to Plan My Travel Itineraries',
+    excerpt:
+      'AI is changing the way I explore new cities. Here is how I integrate ChatGPT into my travel planning workflow.',
+    slug: 'chatgpt-travel-planning',
+  },
+  {
+    id: 2,
+    category: 'AI Tools',
+    title: 'My Favourite AI Tools in 2025',
+    excerpt:
+      'From writing assistants to image generators — a curated list of tools that actually made my life easier.',
+    slug: 'favourite-ai-tools-2025',
+  },
+  {
+    id: 3,
+    category: 'Frontend',
+    title: 'Building This Blog with React',
+    excerpt:
+      'A behind-the-scenes look at how YEN Journey was built — the stack, the decisions, and the lessons learned.',
+    slug: 'building-blog-with-react',
+  },
+  {
+    id: 4,
+    category: 'Frontend',
+    title: 'CSS Tips I Wish I Knew Earlier',
+    excerpt:
+      'Small but powerful CSS techniques that changed how I write styles — from custom properties to modern layout tricks.',
+    slug: 'css-tips',
+  },
+  {
+    id: 5,
+    category: 'Python',
+    title: 'Python for Beginners: Where I Started',
+    excerpt:
+      'My honest journey learning Python from zero — the resources, the struggles, and the small wins that kept me going.',
+    slug: 'python-for-beginners',
+  },
+  {
+    id: 6,
+    category: 'Python',
+    title: 'Automating My Life with Python Scripts',
+    excerpt:
+      'Small automation scripts that save me hours every week — and how you can build your own.',
+    slug: 'python-automation',
+  },
+];
+
+const categories = ['All', 'AI Tools', 'Frontend', 'Python'];
 
 function Tech() {
-  useDocumentTitle('Tech Notes');
-  const notes = getAllTechNotes();
+  const [activeCategory, setActiveCategory] = useState('All');
 
-  // 內聯樣式，完美契合你的 Design System
-  const pageStyle = {
-    backgroundColor: '#FAF8F5', // 暖白背景
-    minHeight: '100vh',
-    padding: '5rem 1.5rem',
-    fontFamily: '"DM Sans", "Noto Sans TC", sans-serif',
-  };
-
-  const headerStyle = {
-    maxWidth: '800px',
-    margin: '0 auto 4rem auto',
-    textAlign: 'center',
-  };
-
-  const brandLabelStyle = {
-    color: '#A8B89A', // 鼠尾草綠
-    fontSize: '0.9rem',
-    fontWeight: '600',
-    letterSpacing: '0.15em',
-    textTransform: 'uppercase',
-    marginBottom: '0.5rem',
-    display: 'block',
-  };
-
-  const titleStyle = {
-    fontFamily: '"Cormorant Garamond", "Playfair Display", serif',
-    fontSize: '3rem',
-    color: '#37473B', // 深森林綠
-    marginBottom: '1rem',
-    fontWeight: '600',
-  };
-
-  const subtitleStyle = {
-    color: '#777777',
-    fontSize: '1.1rem',
-    lineHeight: '1.6',
-  };
-
-  const gridStyle = {
-    maxWidth: '800px',
-    margin: '0 auto',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '2rem',
-  };
-
-  const cardStyle = {
-    backgroundColor: '#ffffff',
-    borderRadius: '12px',
-    padding: '2rem',
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.04)',
-    border: '1px solid #EBE2D6', // 淡淡的米黃邊框
-    transition: 'all 0.3s ease',
-    textDecoration: 'none',
-    display: 'block',
-  };
-
-  const metaContainerStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1rem',
-    color: '#777777',
-    fontSize: '0.85rem',
-    marginBottom: '1rem',
-  };
-
-  const categoryBadgeStyle = {
-    backgroundColor: '#FAF8F5',
-    color: '#37473B',
-    padding: '0.25rem 0.75rem',
-    borderRadius: '20px',
-    fontWeight: '500',
-    fontSize: '0.8rem',
-    border: '1px solid #EBE2D6',
-  };
-
-  const cardTitleStyle = {
-    fontFamily: '"Cormorant Garamond", "Playfair Display", serif',
-    fontSize: '1.8rem',
-    color: '#37473B',
-    marginBottom: '0.75rem',
-    fontWeight: '600',
-    lineHeight: '1.3',
-  };
-
-  const excerptStyle = {
-    color: '#333333',
-    fontSize: '1rem',
-    lineHeight: '1.6',
-    marginBottom: '1.5rem',
-  };
-
-  const footerContainerStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderTop: '1px solid #FAF8F5',
-    paddingTop: '1rem',
-  };
-
-  const tagsContainerStyle = {
-    display: 'flex',
-    gap: '0.5rem',
-    flexWrap: 'wrap',
-  };
-
-  const tagStyle = {
-    fontSize: '0.8rem',
-    color: '#777777',
-    backgroundColor: '#FAF8F5',
-    padding: '0.1rem 0.5rem',
-    borderRadius: '4px',
-  };
-
-  const readMoreStyle = {
-    color: '#37473B',
-    fontWeight: '600',
-    fontSize: '0.9rem',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.25rem',
-  };
+  const filtered =
+    activeCategory === 'All'
+      ? techArticles
+      : techArticles.filter((a) => a.category === activeCategory);
 
   return (
-    <div style={pageStyle}>
-      <header style={headerStyle}>
-        <span style={brandLabelStyle}>Explore . Learn . Share</span>
-        <h1 style={titleStyle}>Tech & AI Notes</h1>
-        <p style={subtitleStyle}>
-          My journey of self-learning Frontend development, leveraging AI tools,
-          and building digital solutions.
-        </p>
-      </header>
+    <div className='tech-page'>
+      {/* Hero */}
+      <section className='tech-hero'>
+        <div className='tech-hero-container'>
+          <p className='tech-eyebrow'>Tech & Learning</p>
+          <h1>
+            Build. Learn.
+            <br />
+            <em>Repeat.</em>
+          </h1>
+          <p>
+            Notes from a self-taught frontend developer exploring AI tools,
+            writing Python scripts, and building things on the web.
+          </p>
+        </div>
+      </section>
 
-      <div style={gridStyle}>
-        {notes.map((note) => (
-          <Link key={note.slug} to={`/tech/${note.slug}`} style={cardStyle}>
-            <div style={metaContainerStyle}>
-              <span style={categoryBadgeStyle}>{note.category}</span>
-              <span>📅 {note.date}</span>
-              <span>⏱️ {note.readingTime}</span>
-            </div>
+      {/* Articles */}
+      <section className='tech-content-section'>
+        <div className='tech-section-container'>
+          {/* Category Filter */}
+          <div className='tech-filter-bar'>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`tech-filter-btn ${activeCategory === cat ? 'active' : ''}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
 
-            <h2 style={cardTitleStyle}>{note.title}</h2>
-            <p style={excerptStyle}>{note.excerpt}</p>
-
-            <div style={footerContainerStyle}>
-              <div style={tagsContainerStyle}>
-                {note.tags.map((tag) => (
-                  <span key={tag} style={tagStyle}>
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-              <span style={readMoreStyle}>Read Note →</span>
-            </div>
-          </Link>
-        ))}
-      </div>
+          {/* Grid */}
+          <div className='tech-article-grid'>
+            {filtered.map((article) => (
+              <Link
+                key={article.id}
+                to={`/tech/${article.slug}`}
+                className='tech-article-card'
+              >
+                <span>{article.category}</span>
+                <h3>{article.title}</h3>
+                <p>{article.excerpt}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

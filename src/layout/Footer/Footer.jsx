@@ -8,8 +8,7 @@ function Footer() {
         {/* Brand */}
         <div className='footer-brand'>
           <Link to='/' className='footer-logo'>
-            <span className='footer-logo-yen'>YEN</span>
-            <span className='footer-logo-journey'> Journey</span>
+            <span className='footer-logo-text'>YenJourney</span>
           </Link>
           <p className='footer-tagline'>
             Explore the World.
@@ -68,7 +67,7 @@ function Footer() {
 
       {/* Bottom Bar */}
       <div className='footer-bottom'>
-        <p>© 2025 YEN Journey</p>
+        <p>© 2026 YEN Journey</p>
         <p>Made with React + ❤️</p>
       </div>
     </footer>

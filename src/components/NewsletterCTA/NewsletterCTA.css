@@ -1,0 +1,163 @@
+.newsletter-cta {
+  background: #1e2b21;
+  padding: 6rem 1.5rem;
+}
+
+.nl-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Left */
+.nl-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.45);
+  margin: 0 0 1rem;
+}
+
+.nl-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  color: #faf8f5;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.nl-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(250, 248, 245, 0.6);
+  margin: 0 0 2rem;
+}
+
+.nl-form {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.nl-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  color: #1e2b21;
+  background: rgba(250, 248, 245, 0.95);
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.nl-input::placeholder {
+  color: #a0b0a3;
+}
+
+.nl-input:focus {
+  border-color: #c8b89a;
+}
+
+.nl-button {
+  padding: 14px 28px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1e2b21;
+  background: #faf8f5;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+  white-space: nowrap;
+}
+
+.nl-button:hover {
+  background: #ebe2d6;
+  transform: translateY(-2px);
+}
+
+.nl-success {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(250, 248, 245, 0.85);
+  padding: 14px 20px;
+  background: rgba(250, 248, 245, 0.08);
+  border-radius: 12px;
+  margin: 0;
+}
+
+/* Right - Benefits */
+.nl-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nl-benefit {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(250, 248, 245, 0.05);
+  border: 1px solid rgba(250, 248, 245, 0.08);
+  border-radius: 16px;
+}
+
+.nl-benefit-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.nl-benefit-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #faf8f5;
+  margin: 0 0 0.2rem;
+}
+
+.nl-benefit-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(250, 248, 245, 0.5);
+  margin: 0;
+}
+
+/* RWD */
+@media (max-width: 900px) {
+  .nl-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsletter-cta {
+    padding: 4rem 1.25rem;
+  }
+
+  .nl-form {
+    flex-direction: column;
+  }
+
+  .nl-input,
+  .nl-button {
+    width: 100%;
+  }
+
+  .nl-benefit {
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+  }
+}

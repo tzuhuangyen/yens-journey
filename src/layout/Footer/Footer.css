@@ -21,25 +21,19 @@
 .footer-logo {
   display: inline-flex;
   align-items: baseline;
-  gap: 0;
   text-decoration: none;
   margin-bottom: 1rem;
 }
 
-.footer-logo-yen {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #faf8f5;
-}
-
-.footer-logo-journey {
+/* 新 Logo：全用 Cormorant Garamond，大氣優雅 */
+.footer-logo-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-size: 1.65rem;
+  font-weight: 500;
   font-style: italic;
-  color: rgba(250, 248, 245, 0.75);
+  letter-spacing: -0.01em;
+  color: #faf8f5;
+  line-height: 1;
 }
 
 .footer-tagline {

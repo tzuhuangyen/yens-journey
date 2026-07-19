@@ -1,0 +1,123 @@
+.travel-inspiration {
+  background: #faf8f5;
+  padding: 6rem 1.5rem;
+}
+
+.ti-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.ti-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ti-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #37473b;
+  opacity: 0.65;
+  margin: 0 0 0.5rem;
+}
+
+.ti-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  color: #1e2b21;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.ti-view-all {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #37473b;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(55, 71, 59, 0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+
+.ti-view-all:hover {
+  border-color: #37473b;
+}
+
+/* Grid */
+.ti-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.ti-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #ebe2d6;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.ti-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(55, 71, 59, 0.12);
+}
+
+.ti-card-inner {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.ti-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.ti-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1e2b21;
+  margin: 0 0 0.25rem;
+}
+
+.ti-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #8a9e8d;
+  margin: 0;
+}
+
+/* RWD */
+@media (max-width: 900px) {
+  .ti-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .travel-inspiration {
+    padding: 4rem 1.25rem;
+  }
+
+  .ti-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .ti-card-inner {
+    padding: 1.75rem 1rem;
+  }
+}

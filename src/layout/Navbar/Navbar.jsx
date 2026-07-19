@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const menuItems = [
@@ -10,21 +10,33 @@ const menuItems = [
 ];
 
 function Navbar() {
-  const [status, setStatus] = useState('top'); // 'top', 'visible', 'hidden'
+  const [status, setStatus] = useState('top');
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const location = useLocation();
+
+  // 換頁時關閉 drawer
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [location]);
+
+  // 開啟 drawer 時禁止 body 捲動
+  useEffect(() => {
+    document.body.style.overflow = drawerOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [drawerOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY <= 10) {
-        // 滾動到最上方：完全融入背景
         setStatus('top');
       } else if (currentScrollY > lastScrollY) {
-        // 往下滾動：隱藏 Navbar
         setStatus('hidden');
       } else {
-        // 往上滾動：顯示 Navbar（帶有毛玻璃與陰影）
         setStatus('visible');
       }
       setLastScrollY(currentScrollY);
@@ -34,7 +46,6 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // 根據滾動狀態動態計算樣式
   const getNavbarStyle = () => {
     const baseStyle = {
       position: 'fixed',
@@ -49,7 +60,6 @@ function Navbar() {
       zIndex: 1000,
       transition:
         'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s, box-shadow 0.4s, backdrop-filter 0.4s',
-      fontFamily: '"DM Sans", sans-serif',
     };
 
     if (status === 'top') {
@@ -64,76 +74,135 @@ function Navbar() {
     if (status === 'hidden') {
       return {
         ...baseStyle,
-        transform: 'translateY(-100%)', // 向上隱藏
-        backgroundColor: 'rgba(250, 248, 245, 0.85)', // 你的暖白背景 85% 透明度
-        backdropFilter: 'blur(8px)', // 毛玻璃效果
+        transform: 'translateY(-100%)',
+        backgroundColor: 'rgba(250, 248, 245, 0.92)',
+        backdropFilter: 'blur(12px)',
       };
     }
 
-    if (status === 'visible') {
-      return {
-        ...baseStyle,
-        transform: 'translateY(0)',
-        backgroundColor: 'rgba(250, 248, 245, 0.85)', // 你的暖白背景 85% 透明度
-        backdropFilter: 'blur(8px)', // 毛玻璃效果
-        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.04)', // 你的 Design System 柔和陰影
-        borderBottom: '1px solid rgba(235, 226, 214, 0.5)', // 淡淡的米黃分界線
-      };
-    }
-
-    return baseStyle;
+    return {
+      ...baseStyle,
+      transform: 'translateY(0)',
+      backgroundColor: 'rgba(250, 248, 245, 0.92)',
+      backdropFilter: 'blur(12px)',
+      boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.04)',
+      borderBottom: '1px solid rgba(235, 226, 214, 0.5)',
+    };
   };
 
-  return (
-    <header style={getNavbarStyle()}>
-      <NavLink to='/' className='navbar-logo' aria-label='Go to homepage'>
-        <span
-          className='logo-yen'
-          style={{ color: '#37473B', fontWeight: 'bold', marginRight: '2px' }}
-        >
-          YEN
-        </span>
-        <span
-          className='logo-journey'
-          style={{ color: '#777777', fontWeight: '300' }}
-        >
-          Journey
-        </span>
-      </NavLink>
+  const isOnHero = status === 'top';
 
-      <nav aria-label='Main navigation'>
-        <ul
-          className='navbar-menu'
-          style={{
-            display: 'flex',
-            listStyle: 'none',
-            gap: '2rem',
-            margin: 0,
-            padding: 0,
-          }}
+  // 漢堡線條顏色：Hero 上用暖白，否則用深綠
+  const hamburgerColor = isOnHero ? '#faf8f5' : '#37473b';
+
+  return (
+    <>
+      <header style={getNavbarStyle()}>
+        {/* ── Logo ── */}
+        <NavLink to='/' className='navbar-logo' aria-label='Go to homepage'>
+          <span
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 800,
+              fontSize: '1rem',
+              letterSpacing: '-0.02em',
+              color: isOnHero ? '#faf8f5' : '#1e2b21',
+              marginRight: '1px',
+            }}
+          >
+            YEN
+          </span>
+          <span
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 400,
+              fontStyle: 'italic',
+              fontSize: '1.1rem',
+              color: isOnHero ? 'rgba(250,248,245,0.7)' : 'rgba(30,43,33,0.55)',
+            }}
+          >
+            Journey
+          </span>
+        </NavLink>
+
+        {/* ── 桌面版 Nav ── */}
+        <nav className='navbar-desktop-nav' aria-label='Main navigation'>
+          <ul
+            style={{
+              display: 'flex',
+              listStyle: 'none',
+              gap: '2rem',
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            {menuItems.map((item) => (
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  className='navbar-item'
+                  style={({ isActive }) => ({
+                    textDecoration: 'none',
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '0.92rem',
+                    fontWeight: isActive ? 600 : 400,
+                    letterSpacing: '0.01em',
+                    color: isOnHero
+                      ? isActive
+                        ? '#faf8f5'
+                        : 'rgba(250,248,245,0.62)'
+                      : isActive
+                        ? '#1e2b21'
+                        : '#8a9e8d',
+                    transition: 'color 0.2s ease',
+                    borderBottom: isActive
+                      ? `1.5px solid ${isOnHero ? '#faf8f5' : '#37473b'}`
+                      : '1.5px solid transparent',
+                    paddingBottom: '2px',
+                  })}
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* ── 漢堡按鈕（手機版）── */}
+        <button
+          className={`navbar-hamburger ${drawerOpen ? 'open' : ''}`}
+          onClick={() => setDrawerOpen((prev) => !prev)}
+          aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={drawerOpen}
         >
+          <span style={{ backgroundColor: hamburgerColor }} />
+          <span style={{ backgroundColor: hamburgerColor }} />
+          <span style={{ backgroundColor: hamburgerColor }} />
+        </button>
+      </header>
+
+      {/* ── 手機版 Drawer ── */}
+      <div
+        className={`navbar-drawer ${drawerOpen ? 'open' : ''}`}
+        aria-hidden={!drawerOpen}
+      >
+        <ul>
           {menuItems.map((item) => (
             <li key={item.path}>
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  isActive ? 'navbar-item active' : 'navbar-item'
+                  `navbar-item ${isActive ? 'active-drawer' : ''}`
                 }
-                style={({ isActive }) => ({
-                  textDecoration: 'none',
-                  color: isActive ? '#37473B' : '#777777',
-                  fontWeight: isActive ? '600' : '400',
-                  fontSize: '0.95rem',
-                  transition: 'color 0.2s',
-                })}
+                onClick={() => setDrawerOpen(false)}
               >
                 {item.label}
               </NavLink>
             </li>
           ))}
         </ul>
-      </nav>
-    </header>
+      </div>
+    </>
   );
 }
 

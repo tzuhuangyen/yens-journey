@@ -1,56 +1,58 @@
-import "./FeaturedCategories.css";
-import SectionTitle from "../SectionTitle/SectionTitle";
-import CategoryCard from "../CategoryCard/CategoryCard";
+import { Link } from 'react-router-dom';
+import './FeaturedCategories.css';
 
 const categories = [
   {
-    title: "Travel",
-    subtitle: "Explore Europe",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    label: 'Travel',
+    sub: '旅行探索',
+    path: '/travel',
+    emoji: '✈️',
+    desc: '歐洲生活與世界旅行',
   },
   {
-    title: "AI",
-    subtitle: "Learn Faster",
-    image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80",
+    label: 'Tech',
+    sub: '學習成長',
+    path: '/tech',
+    emoji: '💻',
+    desc: '前端開發與 AI 工具',
   },
   {
-    title: "Frontend",
-    subtitle: "Build Beautiful UI",
-    image:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
+    label: 'Parenting',
+    sub: '育兒日常',
+    path: '/parenting',
+    emoji: '🌿',
+    desc: '媽媽視角的生活與成長',
   },
   {
-    title: "Parenting",
-    subtitle: "Life with Baby",
-    image:
-      "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80",
+    label: 'About',
+    sub: '關於我',
+    path: '/about',
+    emoji: '🧭',
+    desc: '我的故事與品牌理念',
   },
 ];
 
 function FeaturedCategories() {
   return (
-    <section className="featured">
+    <section className='featured-categories'>
+      <div className='fc-container'>
+        <div className='fc-header'>
+          <p className='fc-eyebrow'>Explore by Category</p>
+          <h2 className='fc-title'>找到你感興趣的主題</h2>
+        </div>
 
-      <SectionTitle
-        subtitle="Discover"
-        title="Explore My World"
-      />
-
-      <div className="featured-grid">
-
-        {categories.map((category) => (
-          <CategoryCard
-            key={category.title}
-            title={category.title}
-            subtitle={category.subtitle}
-            image={category.image}
-          />
-        ))}
-
+        <div className='fc-grid'>
+          {categories.map((cat) => (
+            <Link to={cat.path} key={cat.label} className='fc-card'>
+              <span className='fc-emoji'>{cat.emoji}</span>
+              <p className='fc-card-eyebrow'>{cat.sub}</p>
+              <h3 className='fc-card-title'>{cat.label}</h3>
+              <p className='fc-card-desc'>{cat.desc}</p>
+              <span className='fc-arrow'>→</span>
+            </Link>
+          ))}
+        </div>
       </div>
-
     </section>
   );
 }
