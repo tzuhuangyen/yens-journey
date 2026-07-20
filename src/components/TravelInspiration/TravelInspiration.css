@@ -66,7 +66,9 @@
   overflow: hidden;
   background: #ffffff;
   border: 1px solid #ebe2d6;
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
 }
 
 .ti-card:hover {
@@ -120,4 +122,58 @@
   .ti-card-inner {
     padding: 1.75rem 1rem;
   }
+}
+/* ── World Map ── */
+.wm-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #eee8e0;
+}
+
+/* Tooltip */
+.wm-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: #1e2b21;
+  color: #fff;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 9999;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+.wm-tooltip-sub {
+  opacity: 0.65;
+  font-size: 0.75rem;
+}
+
+/* 圖例 */
+.ti-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #8a9e8d;
+}
+
+.ti-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ti-legend-dot--active {
+  background: #4a7c59;
 }

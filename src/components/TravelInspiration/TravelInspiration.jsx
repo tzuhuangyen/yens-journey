@@ -1,15 +1,34 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { buildAviasalesUrl } from '../../utils/buildAviasalesUrl';
+import WorldMap from './WorldMap';
 import './TravelInspiration.css';
 
-const destinations = [
-  { name: 'Switzerland', sub: '瑞士', emoji: '🏔️' },
-  { name: 'Iceland', sub: '冰島', emoji: '🌋' },
-  { name: 'Japan', sub: '日本', emoji: '⛩️' },
-  { name: 'New Zealand', sub: '紐西蘭', emoji: '🌿' },
-  { name: 'Portugal', sub: '葡萄牙', emoji: '🌊' },
-];
+function getDefaultDepartDate() {
+  const date = new Date();
+  date.setDate(date.getDate() + 30);
+  return date.toISOString().split('T')[0];
+}
 
 function TravelInspiration() {
+  const navigate = useNavigate();
+  const defaultDate = getDefaultDepartDate();
+
+  function handleCountryClick(dest) {
+    // 有站內文章 → 站內跳轉
+    if (dest.articleUrl) {
+      navigate(dest.articleUrl);
+      return;
+    }
+
+    // 沒有文章 → 開新分頁跳 Aviasales
+    const url = buildAviasalesUrl({
+      origin: 'TPE',
+      destination: dest.iataCode,
+      departDate: defaultDate,
+    });
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
   return (
     <section className='travel-inspiration'>
       <div className='ti-container'>
@@ -18,21 +37,15 @@ function TravelInspiration() {
             <p className='ti-eyebrow'>Travel Inspiration</p>
             <h2 className='ti-title'>探索世界的渴望</h2>
           </div>
-          <Link to='/travel' className='ti-view-all'>
-            View All →
-          </Link>
         </div>
 
-        <div className='ti-grid'>
-          {destinations.map((dest) => (
-            <Link to='/travel' key={dest.name} className='ti-card'>
-              <div className='ti-card-inner'>
-                <span className='ti-emoji'>{dest.emoji}</span>
-                <p className='ti-name'>{dest.name}</p>
-                <p className='ti-sub'>{dest.sub}</p>
-              </div>
-            </Link>
-          ))}
+        {/* 地圖 */}
+        <WorldMap onCountryClick={handleCountryClick} />
+
+        {/* 圖例 */}
+        <div className='ti-legend'>
+          <span className='ti-legend-dot ti-legend-dot--active' />
+          <span>可點擊目的地</span>
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import AboutPreview from '../../components/AboutPreview/AboutPreview';
 import TravelInspiration from '../../components/TravelInspiration/TravelInspiration';
 import NewsletterCTA from '../../components/NewsletterCTA/NewsletterCTA';
 import Footer from '../../layout/Footer/Footer';
-
+import FlightSearchCTA from '../../components/FlightSearchCTA/FlightSearchCTA';
 function HomePage() {
   return (
     <>
@@ -14,6 +14,7 @@ function HomePage() {
       <LatestPosts />
       <AboutPreview />
       <TravelInspiration />
+      <FlightSearchCTA />
       <NewsletterCTA />
     </>
   );

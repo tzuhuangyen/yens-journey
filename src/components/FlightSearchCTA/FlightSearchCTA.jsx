@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { buildAviasalesUrl } from '../../utils/buildAviasalesUrl';
+
 import './FlightSearchCTA.css';
 
 function FlightSearchCTA() {
