@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import Navbar from './layout/Navbar/Navbar';
 import Footer from './layout/Footer/Footer';
@@ -16,7 +17,7 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
 
       <main>
@@ -26,7 +27,6 @@ function App() {
           <Route path='/travel/:slug' element={<TravelArticle />} />
           <Route path='/tech' element={<Tech />} />
           <Route path='/tech/:slug' element={<TechDetail />} />
-          Navbar.jsx <Route path='/parenting' element={<Parenting />} />
           <Route path='/parenting' element={<Parenting />} />
           <Route path='/about' element={<About />} />
           <Route path='/affiliate' element={<Affiliate />} />
@@ -34,7 +34,7 @@ function App() {
       </main>
 
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
