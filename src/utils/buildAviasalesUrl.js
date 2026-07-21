@@ -1,8 +1,6 @@
 function formatDDMM(dateStr) {
-  if (!dateStr) return ''; // ← 加這行，沒日期就回傳空字串
-  const date = new Date(dateStr);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
+  if (!dateStr) return '';
+  const [, month, day] = dateStr.split('-'); // 直接拆字串，避免時區問題
   return `${day}${month}`;
 }
 
@@ -13,8 +11,8 @@ export function buildAviasalesUrl({
   returnDate,
 }) {
   const marker = '744200';
-  const depart = formatDDMM(departDate); // 沒日期 → 空字串
-  const ret = formatDDMM(returnDate); // 沒日期 → 空字串
+  const depart = formatDDMM(departDate);
+  const ret = formatDDMM(returnDate);
 
   return `https://www.aviasales.com/search/${origin}${depart}${destination}${ret}1?marker=${marker}`;
 }
