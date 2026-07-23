@@ -10,7 +10,7 @@ export function buildAviasalesUrl({
   departDate,
   returnDate,
 }) {
-  const marker = '744200';
+  const marker = '755271'; // 已更新為你的實際 Travelpayouts Partner ID
   const depart = formatDDMM(departDate);
   const ret = formatDDMM(returnDate);
 
