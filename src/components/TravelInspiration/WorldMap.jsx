@@ -10,6 +10,7 @@ const ARTICLE_MAP = {
   jp: '/destinations/japan',
   nz: '/destinations/new-zealand',
   pt: '/destinations/portugal',
+  hu: '/destinations/hungary',
   // 繼續補充...
 };
 
