@@ -9,7 +9,7 @@ export default function BudapestGuide() {
         '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
       color: '#334155',
       backgroundColor: '#f8fafc',
-      minHeight: '100/vh',
+      minHeight: '100vh',
       paddingBottom: '4rem',
     },
     hero: {
@@ -413,6 +413,7 @@ export default function BudapestGuide() {
               </div>
             </div>
 
+            {/* 中間住宿變現 CTA：HotelsCombined 比價 */}
             <div style={styles.hotelCta}>
               <div>
                 <h4 style={{ margin: 0, fontWeight: 'bold', color: '#78350f' }}>
@@ -429,7 +430,7 @@ export default function BudapestGuide() {
                 </p>
               </div>
               <a
-                href='https://tp.media/r?marker=755271&trs=297495&p=2075&u=https%3A%2F%2Fhotellook.com'
+                href='https://tp.media/r?marker=755271&p=2075&u=https%3A%2F%2Fhotellook.com'
                 target='_blank'
                 rel='noopener noreferrer'
                 style={styles.buttonAmber}
@@ -704,16 +705,18 @@ export default function BudapestGuide() {
                 flexWrap: 'wrap',
               }}
             >
+              {/* 住宿變現連結：Booking.com (使用官方 tp.media 萬用跳轉) */}
               <a
-                href='https://tp.media/r?marker=755271&trs=297495&p=2075&u=https%3A%2F%2Fhotellook.com'
+                href='https://tp.media/r?marker=755271&p=124&u=https%3A%2F%2Fwww.booking.com%2Fsearchresults.zh-tw.html%3Fcity%3D-850553'
                 target='_blank'
                 rel='noopener noreferrer'
                 style={styles.buttonDark}
               >
                 🏨 搜尋布達佩斯住宿
               </a>
+              {/* 租車變現連結：GetRentacar.com (使用官方 tp.media 萬用跳轉) */}
               <a
-                href='https://tp.media/r?marker=755271&trs=297495&p=3257&u=https%3A%2F%2Fwww.discovercars.com'
+                href='https://tp.media/r?marker=755271&p=2674&u=https%3A%2F%2Fgetrentacar.com%2Fzh-TW'
                 target='_blank'
                 rel='noopener noreferrer'
                 style={styles.buttonGreen}
