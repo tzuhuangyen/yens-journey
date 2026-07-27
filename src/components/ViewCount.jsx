@@ -27,24 +27,39 @@ export default function ViewCount() {
     };
 
     // 2. 從 GoatCounter API 讀取該頁面的瀏覽次數
-    const fetchViewCount = () => {
-      // GoatCounter 允許透過此端點獲取單一頁面的 count
-      const apiUrl = `https://yensjourney.goatcounter.com/counter/${encodeURIComponent(currentPath)}.json`;
+    const fetchViewCount = async () => {
+      try {
+        // 1. 將路徑中的斜線編碼，這是 GoatCounter API 的規範
+        const encodedPath = encodeURIComponent(currentPath);
+        const url = `https://yensjourney.goatcounter.com/counter/${encodedPath}.json`;
 
-      fetch(apiUrl)
-        .then((res) => {
-          if (!res.ok) throw new Error('Network response was not ok');
-          return res.json();
-        })
-        .then((data) => {
-          // data.count 格式通常為數字
-          if (data && typeof data.count === 'number') {
-            setViews(data.count);
-          }
-        })
-        .catch((err) => {
-          console.warn('Failed to fetch view count:', err);
-        });
+        console.log('正在請求瀏覽數，網址為:', url);
+
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('GoatCounter 回傳的原始資料:', data);
+
+        // 2. 安全地解析 count 數字
+        // 有時 GoatCounter 會回傳 { count: "12" } (字串) 或 { count: 12 } (數字)
+        // 如果該頁面完全沒有人看過，它可能會回傳 { count: "0" } 或是空值
+        let countVal = 0;
+        if (data && data.count !== undefined) {
+          // 去除可能存在的逗號（例如 "1,234"），並轉成純數字
+          const cleanCount = String(data.count).replace(/,/g, '');
+          countVal = parseInt(cleanCount, 10) || 0;
+        }
+
+        console.log('解析後的瀏覽次數為:', countVal);
+        setViews(countVal);
+      } catch (error) {
+        console.error('無法獲取瀏覽數:', error);
+        // 如果出錯，我們也給它一個預設值 0，避免畫面一直卡在「讀取中...」
+        setViews(0);
+      }
     };
 
     sendGoatCounterHit();
