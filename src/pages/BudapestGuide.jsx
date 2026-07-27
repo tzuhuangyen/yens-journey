@@ -391,15 +391,15 @@ export default function BudapestGuide() {
               </div>
             </div>
 
-            {/* 中間住宿變現 CTA：KKday 官方安全短網址 */}
+            {/* 中間住宿變現 CTA：KKday 官方直達布達佩斯精選住宿與飯店連結 */}
             <div style={{ textAlign: 'center', margin: '2rem 0' }}>
               <a
-                href='https://kkday.tp.st/qM9cEbNy'
+                href='https://kkday.tp.st/nBSslO9U'
                 target='_blank'
                 rel='noopener noreferrer'
                 style={styles.buttonDark}
               >
-                🏨 透過 KKday 尋找布達佩斯精選住宿與體驗
+                🏨 透過 KKday 尋找布達佩斯精選住宿與飯店
               </a>
             </div>
           </section>
@@ -669,14 +669,14 @@ export default function BudapestGuide() {
                 flexWrap: 'wrap',
               }}
             >
-              {/* Klook 官方安全短網址 */}
+              {/* Klook 官方直達布達佩斯熱門行程與體驗 */}
               <a
-                href='https://klook.tp.st/aVdzKDim'
+                href='https://klook.tp.st/9Y4Rpfzp'
                 target='_blank'
                 rel='noopener noreferrer'
                 style={styles.buttonDark}
               >
-                🎟️ 預訂布達佩斯熱門行程
+                🎟️ 透過klook預訂布達佩斯熱門行程
               </a>
               {/* GetRentacar 官方安全短網址 */}
               <a
