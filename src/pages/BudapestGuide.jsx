@@ -1,6 +1,6 @@
 import React from 'react';
 import FlightSearchCTA from '../components/FlightSearchCTA/FlightSearchCTA';
-import ViewCount from '../components/ViewCount/ViewCount';
+import ViewCount from '../components/ViewCount';
 export default function BudapestGuide() {
   // 內聯樣式定義，確保在沒有 Tailwind 的環境下也能完美呈現
   const styles = {

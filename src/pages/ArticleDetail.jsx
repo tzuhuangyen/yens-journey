@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { articles } from '../data/articles';
 import FlightSearchCTA from '../components/FlightSearchCTA/FlightSearchCTA';
-import ViewCount from '../components/ViewCount/ViewCount';
+import ViewCount from '../components/ViewCount';
 export default function ArticleDetail() {
   const { articleId } = useParams();
   const article = articles[articleId];
