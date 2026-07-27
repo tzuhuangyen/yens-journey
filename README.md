@@ -13,7 +13,7 @@ A personal website sharing travel stories, tech insights, and life experiences.
 ## 🌍 Content Categories
 
 - **✈️ Travel & Flight Search** – Handpicked itineraries, budget guides, and real-time flight search.
-- **💻 Frontend Development** – Modern web technologies, React best practices, and UI/UX design.
+- **💻 Software Development & Tech** – JavaScript/React, Python, Node.js, and modern web development.
 - **🤖 AI** – Exploring the power of AI tools and LLM integrations.
 - **👶 Parenting** – Sharing the beautiful journey of raising a child.
 
@@ -21,11 +21,11 @@ A personal website sharing travel stories, tech insights, and life experiences.
 
 ## 🛠 Tech Stack & Integrations
 
-- **Frontend:** React, Vite, Bootstrap, Tailwind CSS
-- **Monetization & APIs:**
+- **Frontend:** React, Vite, Bootstrap
+- **Languages & Tools:** JavaScript, Python, Backend Tools
+- **Monetization & APIs:** 
   - **Aviasales Search Engine** (Integrated live flight search)
   - **Travelpayouts Affiliate Network** (Klook, KKday, GetRentacar optimized deep-links)
-- **Backend & Scripting:** Python (Coming Soon)
 
 ---
 
