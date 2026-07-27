@@ -203,6 +203,10 @@ export default function BudapestGuide() {
         <div style={styles.heroBg}></div>
         <div style={styles.heroContent}>
           <span style={styles.badge}>2026 最新攻略</span>
+          {/* 2. 確保這裡有寫上元件標籤！ */}
+          <div style={styles.viewsWrapper}>
+            <ViewCount />
+          </div>
           <h1 style={styles.h1}>
             2026
             布達佩斯自由行攻略｜第一次去匈牙利必看！5天4夜行程、住宿、交通、景點、美食完整整理
