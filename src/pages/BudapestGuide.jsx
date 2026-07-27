@@ -148,29 +148,6 @@ export default function BudapestGuide() {
       color: '#0f172a',
       marginBottom: '0.5rem',
     },
-    hotelCta: {
-      backgroundColor: '#fffbeb',
-      border: '1px solid #fde68a',
-      borderRadius: '0.75rem',
-      padding: '1.25rem',
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      gap: '1rem',
-      margin: '2rem 0',
-    },
-    buttonAmber: {
-      backgroundColor: '#f59e0b',
-      color: '#0f172a',
-      fontWeight: '700',
-      padding: '0.75rem 1.25rem',
-      borderRadius: '0.5rem',
-      textDecoration: 'none',
-      display: 'inline-block',
-      transition: 'background-color 0.2s',
-    },
     buttonDark: {
       backgroundColor: '#0f172a',
       color: '#ffffff',
@@ -179,6 +156,7 @@ export default function BudapestGuide() {
       borderRadius: '0.5rem',
       textDecoration: 'none',
       display: 'inline-block',
+      transition: 'background-color 0.2s',
     },
     buttonGreen: {
       backgroundColor: '#059669',
@@ -413,29 +391,15 @@ export default function BudapestGuide() {
               </div>
             </div>
 
-            {/* 中間住宿變現 CTA：HotelsCombined 比價 */}
-            <div style={styles.hotelCta}>
-              <div>
-                <h4 style={{ margin: 0, fontWeight: 'bold', color: '#78350f' }}>
-                  🏨 尋找布達佩斯優質飯店與民宿
-                </h4>
-                <p
-                  style={{
-                    margin: '0.25rem 0 0 0',
-                    fontSize: '0.9rem',
-                    color: '#92400e',
-                  }}
-                >
-                  一鍵比價 Booking.com、Agoda 與 Expedia 的最新空房優惠。
-                </p>
-              </div>
+            {/* 中間住宿變現 CTA：KKday 官方安全短網址 */}
+            <div style={{ textAlign: 'center', margin: '2rem 0' }}>
               <a
-                href='https://tp.media/r?marker=755271&p=2075&u=https%3A%2F%2Fhotellook.com'
+                href='https://kkday.tp.st/qM9cEbNy'
                 target='_blank'
                 rel='noopener noreferrer'
-                style={styles.buttonAmber}
+                style={styles.buttonDark}
               >
-                搜尋住宿優惠 →
+                🏨 透過 KKday 尋找布達佩斯精選住宿與體驗
               </a>
             </div>
           </section>
@@ -677,7 +641,7 @@ export default function BudapestGuide() {
           </section>
 
           {/* 底部總結與最終導流 */}
-          <section style={styles.footerCta}>
+          <div style={styles.footerCta}>
             <h3
               style={{
                 fontSize: '1.25rem',
@@ -695,7 +659,7 @@ export default function BudapestGuide() {
                 margin: '0 auto 1.5rem auto',
               }}
             >
-              提前預訂機票與住宿，不僅能鎖定最優惠的價格，還能省去現場排隊的繁瑣步驟，讓你的布達佩斯自由行更加從容完美。
+              提前預訂熱門行程與租車，不僅能鎖定最優惠的價格，還能省去現場排隊的繁瑣步驟，讓你的布達佩斯自由行更加從容完美。
             </p>
             <div
               style={{
@@ -705,18 +669,18 @@ export default function BudapestGuide() {
                 flexWrap: 'wrap',
               }}
             >
-              {/* 住宿變現連結：Booking.com (使用官方 tp.media 萬用跳轉) */}
+              {/* Klook 官方安全短網址 */}
               <a
-                href='https://tp.media/r?marker=755271&p=124&u=https%3A%2F%2Fwww.booking.com%2Fsearchresults.zh-tw.html%3Fcity%3D-850553'
+                href='https://klook.tp.st/aVdzKDim'
                 target='_blank'
                 rel='noopener noreferrer'
                 style={styles.buttonDark}
               >
-                🏨 搜尋布達佩斯住宿
+                🎟️ 預訂布達佩斯熱門行程
               </a>
-              {/* 租車變現連結：GetRentacar.com (使用官方 tp.media 萬用跳轉) */}
+              {/* GetRentacar 官方安全短網址 */}
               <a
-                href='https://tp.media/r?marker=755271&p=2674&u=https%3A%2F%2Fgetrentacar.com%2Fzh-TW'
+                href='https://getrentacar.tp.st/WyrqeWb5'
                 target='_blank'
                 rel='noopener noreferrer'
                 style={styles.buttonGreen}
@@ -724,7 +688,7 @@ export default function BudapestGuide() {
                 🚗 預訂歐洲自駕租車
               </a>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </div>
