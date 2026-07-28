@@ -177,3 +177,105 @@
 .ti-legend-dot--active {
   background: #4a7c59;
 }
+
+/* 精選文章卡片容器 */
+.ti-featured-post-container {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+/* 精選文章卡片主體 */
+.ti-featured-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  position: relative;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ti-featured-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* 精選標籤 (Featured) */
+.ti-featured-badge {
+  position: absolute;
+  top: -12px;
+  left: 2.5rem;
+  background-color: #111827; /* 深黑色，呼應你的極簡風 */
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* 分類文字 */
+.ti-featured-category {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* 文章標題 */
+.ti-featured-title {
+  font-size: 1.5rem;
+  color: #111827;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+/* 文章摘要 */
+.ti-featured-excerpt {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* 點擊按鈕 */
+.ti-featured-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #111827;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.ti-featured-btn:hover {
+  background-color: #374151;
+}
+
+/* 響應式微調：手機版間距調整 */
+@media (max-width: 640px) {
+  .ti-featured-card {
+    padding: 2rem 1.5rem;
+  }
+  .ti-featured-badge {
+    left: 1.5rem;
+  }
+  .ti-featured-title {
+    font-size: 1.25rem;
+  }
+}
