@@ -225,3 +225,112 @@
     border-radius: 16px;
   }
 }
+/* 兩欄式排版容器 */
+.travel-main-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+/* 當螢幕寬度大於 1024px 時，啟用兩欄並排 */
+@media (min-width: 1024px) {
+  .travel-main-layout {
+    grid-template-columns: 2.2fr 1fr;
+  }
+}
+
+/* 側邊欄容器 */
+.travel-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 4rem; /* 對齊左側內容的間距 */
+}
+
+/* 側邊欄卡片樣式 (強制指定深色字體) */
+.travel-sidebar .sidebar-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 16px !important; /* 配合你左邊卡片的圓角 */
+  padding: 2rem !important;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.025) !important;
+}
+
+/* 強制側欄的 Eyebrow 顏色 */
+.travel-sidebar .sidebar-eyebrow {
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #6b7280 !important; /* 灰色 */
+  margin-bottom: 0.75rem !important;
+  font-weight: 600 !important;
+  display: block !important;
+}
+
+/* 強制側欄的標題顏色 (深色) */
+.travel-sidebar h3 {
+  font-size: 1.25rem !important;
+  color: #1f2937 !important; /* 深灰/黑色，確保清晰可見 */
+  margin-top: 0px !important;
+  margin-bottom: 1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+}
+
+/* 強制側欄的描述文字顏色 */
+.travel-sidebar p {
+  font-size: 0.9rem !important;
+  color: #4b5563 !important; /* 中深灰色 */
+  line-height: 1.6 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* 側欄按鈕樣式 */
+.sidebar-action-btn {
+  display: inline-block !important;
+  width: 100% !important;
+  text-align: center !important;
+  padding: 0.75rem 1rem !important;
+  background-color: #111827 !important; /* 深黑色按鈕 */
+  color: #ffffff !important; /* 白色文字 */
+  text-decoration: none !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.sidebar-action-btn:hover {
+  background-color: #374151 !important;
+}
+
+/* Travelpayouts 佔位樣式 */
+.travelpayouts-widget-placeholder {
+  background-color: #f9fafb !important;
+  border: 2px dashed #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  text-align: center !important;
+}
+
+.travelpayouts-widget-placeholder p {
+  font-size: 0.8rem !important;
+  color: #9ca3af !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.widget-tag {
+  display: inline-block !important;
+  font-size: 0.7rem !important;
+  background-color: #f3f4f6 !important;
+  color: #4b5563 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  margin: 0 0.25rem !important;
+  font-weight: 500 !important;
+}
