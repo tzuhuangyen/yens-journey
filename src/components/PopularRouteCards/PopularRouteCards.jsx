@@ -1,5 +1,5 @@
-import { buildPopularRouteUrl } from '../../utils/buildAviasalesUrl';
 import './PopularRouteCards.css';
+import { buildAviasalesUrl } from '../../utils/buildAviasalesUrl';
 
 // 自動產生 30 天後的日期
 function getDefaultDepartDate() {
@@ -19,10 +19,10 @@ function PopularRouteCards({ routes }) {
         <a
           key={route.id}
           className='popular-route-card'
-          href={buildPopularRouteUrl({
+          href={buildAviasalesUrl({
             origin: route.origin,
             destination: route.destination,
-            departDate: defaultDate, // ← 加這行
+            departureDate: defaultDate,
           })}
           target='_blank'
           rel='noopener noreferrer'

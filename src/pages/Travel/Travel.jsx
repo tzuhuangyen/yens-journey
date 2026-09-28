@@ -3,17 +3,35 @@ import { Link } from 'react-router-dom';
 import FlightSearchCTA from '../../components/FlightSearchCTA/FlightSearchCTA';
 import {
   getFeaturedTravelArticles,
-  getLatestTravelArticles,
+  travelArticles,
 } from '../../data/travelArticles';
 import PopularRouteCards from '../../components/PopularRouteCards/PopularRouteCards';
 import { popularRoutes } from '../../data/popularRoutes';
-
+import { getPublishedDestinations } from '../../data/destinations';
 import './Travel.css';
 
+// 把 destinations 轉成跟 travelArticles 相容的格式，方便一起排序、渲染
+const destinationEntries = getPublishedDestinations().map((d) => ({
+  slug: d.slug,
+  title: d.title,
+  excerpt: d.excerpt,
+  date: d.date,
+  category: d.city,
+  image: d.image,
+  type: 'latest',
+  isExternalGuide: true, // 標記這是走 /destinations/ 而不是 /travel/
+}));
+
+// ✅ 合併並依日期排序，Italy / France / Hungary 都會自動出現在這裡
+const allLatestArticles = [
+  ...destinationEntries,
+  ...travelArticles.filter((a) => a.type === 'latest'),
+].sort((a, b) => new Date(b.date) - new Date(a.date));
+
 function ArticleCard({ article }) {
-  // 判斷是否為外部或特殊路由（例如匈牙利攻略）
-  const isSpecialPath = article.slug.startsWith('/');
-  const targetPath = isSpecialPath ? article.slug : `/travel/${article.slug}`;
+  const targetPath = article.isExternalGuide
+    ? `/destinations/${article.slug}`
+    : `/travel/${article.slug}`;
 
   return (
     <Link to={targetPath} className='travel-article-card'>
@@ -24,22 +42,32 @@ function ArticleCard({ article }) {
   );
 }
 
+function ArticleListItem({ article }) {
+  const to = article.isExternalGuide
+    ? `/destinations/${article.slug}`
+    : `/travel/${article.slug}`;
+
+  return (
+    <Link to={to} className='travel-list-item'>
+      {article.image && (
+        <div
+          className='travel-list-item-image'
+          style={{ backgroundImage: `url('${article.image}')` }}
+        />
+      )}
+      <div className='travel-list-item-content'>
+        <span className='travel-list-item-category'>{article.category}</span>
+        <h3 className='travel-list-item-title'>{article.title}</h3>
+        <p className='travel-list-item-excerpt'>{article.excerpt}</p>
+        <span className='travel-list-item-date'>{article.date}</span>
+      </div>
+      <span className='travel-list-item-arrow'>→</span>
+    </Link>
+  );
+}
+
 function Travel() {
-  const latestArticles = getLatestTravelArticles();
   const featuredArticles = getFeaturedTravelArticles();
-
-  // 手動將「匈牙利布達佩斯攻略」包裝成與你文章系統格式相同的物件
-  const hungaryArticle = {
-    slug: '/destinations/hungary', // 特殊路徑，會被 ArticleCard 識別
-    category: 'Europe • Guide',
-    title:
-      '2026 布達佩斯自由行攻略 | 第一次去匈牙利必看！5天4夜行程、住宿、交通、景點、美食完整整理',
-    excerpt:
-      '第一次去匈牙利怎麼玩？本篇整理最新布達佩斯自由行攻略，包含5天4夜行程安排、住宿推薦、交通方式、景點、美食與預算，帶你輕鬆完成旅遊規劃。',
-  };
-
-  // 將匈牙利攻略塞入精選文章的最前面，確保它有最大曝光！
-  const displayFeaturedArticles = [hungaryArticle, ...featuredArticles];
 
   return (
     <div className='travel-page'>
@@ -54,23 +82,23 @@ function Travel() {
         </div>
       </section>
 
-      {/* 兩欄式主內容區 */}
       <div className='travel-main-layout'>
-        {/* 左側：文章列表 */}
         <div className='travel-main-content'>
+          {/* ✅ Latest Articles 改成條列式，並且包含所有目的地攻略 */}
           <section className='travel-content-section'>
             <div className='travel-section-heading'>
               <p className='travel-eyebrow'>Latest Articles</p>
               <h2>Latest travel notes</h2>
             </div>
 
-            <div className='travel-article-grid'>
-              {latestArticles.map((article) => (
-                <ArticleCard article={article} key={article.slug} />
+            <div className='travel-article-list'>
+              {allLatestArticles.map((article) => (
+                <ArticleListItem article={article} key={article.slug} />
               ))}
             </div>
           </section>
 
+          {/* Featured Guides 維持卡片式，主打精選內容 */}
           <section className='travel-content-section featured-section'>
             <div className='travel-section-heading'>
               <p className='travel-eyebrow'>Featured Guides</p>
@@ -78,16 +106,14 @@ function Travel() {
             </div>
 
             <div className='travel-article-grid'>
-              {displayFeaturedArticles.map((article) => (
+              {featuredArticles.map((article) => (
                 <ArticleCard article={article} key={article.slug} />
               ))}
             </div>
           </section>
         </div>
 
-        {/* 右側：新增側邊欄 Sidebar (保持與 TravelArticle 側欄一致的極簡風格) */}
         <aside className='travel-sidebar'>
-          {/* 側欄區塊 1：強烈推薦匈牙利攻略 */}
           <div className='sidebar-card highlight-card'>
             <p className='sidebar-eyebrow'>Must Read</p>
             <h3>布達佩斯 5 天 4 夜攻略</h3>
@@ -100,15 +126,12 @@ function Travel() {
             </Link>
           </div>
 
-          {/* 側欄區塊 2：Travelpayouts 搜尋小工具預留區 */}
           <div className='sidebar-card travelpayouts-card'>
             <p className='sidebar-eyebrow'>Compare & Save</p>
             <h3>尋找便宜機票與住宿</h3>
             <p className='sidebar-desc'>
               使用下方工具即時比價，規劃你的下一趟旅程：
             </p>
-
-            {/* 這裡可以放置 Travelpayouts 的 Widget */}
             <div className='travelpayouts-widget-placeholder'>
               <p>[ Travelpayouts Widget 預留位置 ]</p>
               <span className='widget-tag'>Booking.com</span>

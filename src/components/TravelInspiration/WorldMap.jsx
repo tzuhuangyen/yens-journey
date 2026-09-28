@@ -1,18 +1,39 @@
 // src/components/WorldMap.jsx
 import React, { useEffect, useRef, useState } from 'react';
-import { geoNaturalEarth1, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
+import { getPublishedDestinations } from '../../data/destinations';
+import { geoNaturalEarth1, geoPath, geoCentroid } from 'd3-geo'; // 加入 geoCentroid
 
-// ── 有站內文章的國家 ──────────────────────────────────────────
-const ARTICLE_MAP = {
-  ch: '/destinations/switzerland',
-  is: '/destinations/iceland',
-  jp: '/destinations/japan',
-  nz: '/destinations/new-zealand',
-  pt: '/destinations/portugal',
-  hu: '/destinations/hungary',
-  // 繼續補充...
+// ── 自動從 destinations.js 產生，不用再手動維護 ──
+const ARTICLE_MAP = Object.fromEntries(
+  getPublishedDestinations().map((d) => [
+    d.alpha2,
+    { routeType: 'destination', routePath: d.slug },
+  ]),
+);
+// ── 海外領地排除清單：避免跟本土共用國碼造成誤判 ──
+const EXCLUDED_TERRITORIES = {
+  fr: [{ minLon: -60, maxLon: -50, minLat: 0, maxLat: 10 }], // 法屬圭亞那
 };
+
+function isExcludedTerritory(alpha2, centroid) {
+  const zones = EXCLUDED_TERRITORIES[alpha2];
+  if (!zones || !centroid) return false;
+  const [lon, lat] = centroid;
+  return zones.some(
+    (z) =>
+      lon >= z.minLon && lon <= z.maxLon && lat >= z.minLat && lat <= z.maxLat,
+  );
+}
+
+// 把 MultiPolygon 拆成獨立 Polygon，才能個別判斷位置
+function splitFeature(feat) {
+  if (feat.geometry.type !== 'MultiPolygon') return [feat];
+  return feat.geometry.coordinates.map((coords) => ({
+    ...feat,
+    geometry: { type: 'Polygon', coordinates: coords },
+  }));
+}
 
 // ── 每個國家的主要機場 IATA ───────────────────────────────────
 const IATA_MAP = {
@@ -614,10 +635,28 @@ export default function WorldMap({
 
   const handleClick = (alpha2) => {
     if (!alpha2) return;
-    if (ARTICLE_MAP[alpha2]) {
-      onCountryClick?.({ type: 'article', url: ARTICLE_MAP[alpha2] });
-    } else if (IATA_MAP[alpha2]) {
-      onCountryClick?.({ type: 'flight', iata: IATA_MAP[alpha2], alpha2 });
+
+    const article = ARTICLE_MAP[alpha2];
+
+    if (article) {
+      const url =
+        article.routeType === 'travel'
+          ? `/travel/${article.routePath}`
+          : `/destinations/${article.routePath}`;
+
+      onCountryClick?.({
+        type: 'article',
+        url,
+        routeType: article.routeType,
+        routePath: article.routePath,
+        alpha2,
+      });
+      return;
+    }
+
+    const iata = IATA_MAP[alpha2];
+    if (iata) {
+      onCountryClick?.({ type: 'flight', iata, alpha2 });
     }
   };
 
@@ -635,29 +674,46 @@ export default function WorldMap({
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
           style={{ width: '100%', height: 'auto', display: 'block' }}
         >
-          {countries.map((feat, index) => {
+          {countries.flatMap((feat, index) => {
             const alpha2 = numericToAlpha2(feat.id);
             const hasArticle = !!ARTICLE_MAP[alpha2];
-            // ── 方案一：沒有文章一律藍色，不再有灰色 ──
-            const fill = hasArticle ? '#2e7d52' : '#a8c4d4';
+            const subFeatures = splitFeature(feat);
 
-            return (
-              <path
-                key={index}
-                d={pathGen(feat)}
-                fill={fill}
-                stroke='#fff'
-                strokeWidth={0.5}
-                style={{
-                  cursor:
-                    hasArticle || IATA_MAP[alpha2] ? 'pointer' : 'default',
-                }}
-                onMouseEnter={(e) => handleMouseEnter(e, alpha2)}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                onClick={() => handleClick(alpha2)}
-              />
-            );
+            return subFeatures.map((subFeat, subIndex) => {
+              const centroid = geoCentroid(subFeat);
+              const isExcluded = isExcludedTerritory(alpha2, centroid);
+              const isClickableArticle = hasArticle && !isExcluded;
+              const fill = isClickableArticle ? '#2e7d52' : '#a8c4d4';
+
+              return (
+                <path
+                  key={`${index}-${subIndex}`}
+                  d={pathGen(subFeat)}
+                  fill={fill}
+                  stroke='#fff'
+                  strokeWidth={0.5}
+                  style={{
+                    cursor:
+                      isClickableArticle || IATA_MAP[alpha2]
+                        ? 'pointer'
+                        : 'default',
+                  }}
+                  onMouseEnter={(e) => handleMouseEnter(e, alpha2)}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => {
+                    if (isExcluded) {
+                      // 領地也能搜機票，只是不會跳去文章
+                      const iata = IATA_MAP[alpha2];
+                      if (iata)
+                        onCountryClick?.({ type: 'flight', iata, alpha2 });
+                      return;
+                    }
+                    handleClick(alpha2);
+                  }}
+                />
+              );
+            });
           })}
         </svg>
 

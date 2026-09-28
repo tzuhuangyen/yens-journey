@@ -11,7 +11,9 @@ import { getPopularRoutesByIds } from '../../data/popularRoutes';
 import './TravelArticle.css';
 
 function formatDisplayDate(dateString) {
+  if (!dateString) return '';
   const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) return '';
 
   return new Intl.DateTimeFormat('en', {
     year: 'numeric',
@@ -33,24 +35,26 @@ function TravelArticle() {
     .filter((item) => item.slug !== article.slug)
     .slice(0, 3);
 
-  const relatedRoutes = getPopularRoutesByIds(article.relatedRouteIds);
+  const relatedRoutes = getPopularRoutesByIds(article.relatedRouteIds || []);
 
   return (
     <article className='travel-article-page'>
       <header className='travel-article-hero'>
         <div className='travel-article-hero-container'>
           <Link to='/travel' className='back-to-travel'>
-            ← Back to Travel
+            ← 回到旅遊文章
           </Link>
 
-          <p className='travel-article-eyebrow'>{article.heroLabel}</p>
+          {article.heroLabel && (
+            <p className='travel-article-eyebrow'>{article.heroLabel}</p>
+          )}
 
           <h1>{article.title}</h1>
 
           <div className='travel-article-meta'>
-            <span>{article.category}</span>
-            <span>{formatDisplayDate(article.date)}</span>
-            <span>{article.readingTime}</span>
+            {article.category && <span>{article.category}</span>}
+            {article.date && <span>{formatDisplayDate(article.date)}</span>}
+            {article.readingTime && <span>{article.readingTime}</span>}
           </div>
 
           {article.tags && article.tags.length > 0 && (
@@ -61,19 +65,29 @@ function TravelArticle() {
             </div>
           )}
 
-          <p>{article.excerpt}</p>
+          {article.excerpt && <p>{article.excerpt}</p>}
         </div>
       </header>
 
       <div className='travel-article-layout'>
         <div className='travel-article-content'>
-          {article.content.map((block, index) => {
-            if (block.type === 'heading') {
-              return <h2 key={`${block.type}-${index}`}>{block.text}</h2>;
-            }
+          {Array.isArray(article.content) && article.content.length > 0 ? (
+            article.content.map((block, index) => {
+              if (!block || typeof block !== 'object') return null;
 
-            return <p key={`${block.type}-${index}`}>{block.text}</p>;
-          })}
+              if (block.type === 'heading') {
+                return <h2 key={`${block.type}-${index}`}>{block.text}</h2>;
+              }
+
+              if (block.type === 'paragraph') {
+                return <p key={`${block.type}-${index}`}>{block.text}</p>;
+              }
+
+              return null;
+            })
+          ) : (
+            <p>No content available.</p>
+          )}
         </div>
 
         <aside className='travel-article-sidebar'>

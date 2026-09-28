@@ -1,20 +1,21 @@
-function formatDDMM(dateStr) {
-  if (!dateStr) return '';
-  const [, month, day] = dateStr.split('-'); // 直接拆字串，避免時區問題
-  return `${day}${month}`;
-}
-
 export function buildAviasalesUrl({
   origin,
   destination,
-  departDate,
-  returnDate,
-}) {
-  const marker = '755271'; // 已更新為你的實際 Travelpayouts Partner ID
-  const depart = formatDDMM(departDate);
-  const ret = formatDDMM(returnDate);
+  marker,
+  locale = 'en',
+  currency = 'usd',
+} = {}) {
+  const params = new URLSearchParams();
 
-  return `https://www.aviasales.com/search/${origin}${depart}${destination}${ret}1?marker=${marker}`;
+  if (marker) params.set('marker', marker);
+  if (locale) params.set('locale', locale);
+  if (currency) params.set('currency', currency);
+  if (origin) params.set('origin', origin);
+  if (destination) params.set('destination', destination);
+
+  const query = params.toString();
+
+  return query
+    ? `https://www.aviasales.com/search?${query}`
+    : 'https://www.aviasales.com/search';
 }
-
-export const buildPopularRouteUrl = buildAviasalesUrl;
